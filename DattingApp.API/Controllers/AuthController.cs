@@ -28,6 +28,7 @@ namespace DattingApp.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDTO userForRegister)
         {
+            
             userForRegister.UserName = userForRegister.UserName.ToLower();
 
             if (await _repo.UserExists(userForRegister.UserName))
@@ -46,6 +47,7 @@ namespace DattingApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDTO userforLogin)
         {
+            throw new Exception("Error Occured while Login");
             var userFromRepo = await _repo.Login(userforLogin.UserName, userforLogin.Password);
             if (userFromRepo == null)
                 return Unauthorized();
